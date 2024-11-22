@@ -22,12 +22,14 @@ update_and_install() {
     echo -e "${YELLOW}Actualizando lista de paquetes y realizando instalación...${NC}"
     sudo apt-get update
     sudo apt-get install -y "$@"
+    sudo apt install forensics-all
 }
 
 # Funciones de instalación por categoría con herramientas específicas
 install_data_acquisition() {
     echo -e "${YELLOW}Instalando herramientas de adquisición de datos...${NC}"
-    update_and_install dc3dd guymager
+    update_and_install dc3dd guymager exfat-fuse exfat-utils
+
 }
 
 install_disk_analysis() {
@@ -52,6 +54,7 @@ install_memory_analysis() {
     sudo apt-get install dwarfdump pcregrep libpcre2-dev -y
     sudo apt install -y python2.7
     sudo apt install -y build-essential python2.7-dev python2-dev
+    
 
     wget https://gist.githubusercontent.com/anir0y/a20246e26dcb2ebf1b44a0e1d989f5d1/raw/a9908e5dd147f0b6eb71ec51f9845fafe7fb8a7f/pip2%2520install -O run.sh 
     chmod +x run.sh 
